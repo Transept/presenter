@@ -1,36 +1,44 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
+import React from "react";
 import "./App.css";
 
-function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+// Change this constant to modify the number of items in the sidebar
+const SIDEBAR_ITEM_COUNT = 50;
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
+const Sidebar: React.FC = () => {
+  // Generate an array of N items
+  const sidebarItems = Array.from(
+    { length: SIDEBAR_ITEM_COUNT },
+    (_, index) => `Item ${index + 1}`
+  );
 
   return (
-    <main className="container">
-      <h1>Transept Presenter</h1>
+    <div className="sidebar">
+      <ol className="sidebar-list">
+        {sidebarItems.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ol>
+    </div>
+  );
+};
 
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
+const Main: React.FC = () => {
+  return (
+    <div className="main">
+      <div className="main-header">
+        <h1>Main Header</h1>
+      </div>
+      <div className="main-content">
+        <p>Main Content</p>
+      </div>
+    </div>
+  );
+};
+function App() {
+  return (
+    <main className="container">
+      <Sidebar />
+      <Main />
     </main>
   );
 }
