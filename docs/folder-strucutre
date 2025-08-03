@@ -1,0 +1,33 @@
+# Storage
+
+All files will be stored in two locations:
+
+- Data files
+  - Default Storage location shall be in a common space such as AppData on Windows
+  - Shall only contain text files for things like shared sections, and saved sections
+- Media files
+  - This is for raw media files. This is the default media library for the whole system and allows for referencing common images.
+
+## Data files
+
+The Default data file structure shall be as follows
+
+- Sections: contains pre-saved sections
+- Songs: Contains saved songs including arrangements
+- Configs: Stores any system level configs
+- Playlists: Default save location for playlists. Playlists may be exported and imported
+
+## Media Files
+
+Media files shall be separated into types:
+
+- Images
+- Videos
+
+Each image and video will only be loaded when I playlist has that image/video.
+
+When I user puts an image/video into Presenter a copy of the image/video shall be made and placed into the image/video folder.
+
+### Data Management
+
+Due to system size limitations a "clean media" function shall exist such that when executed all playlist media references shall be checked. If an image/video is not referenced by a playlist then the media shall be deleted.
